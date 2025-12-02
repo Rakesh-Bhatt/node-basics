@@ -24,4 +24,22 @@ exports.getUserByID = (req, res, next) => {
   } catch(err) {
     next(err);
   }
-}
+};
+
+exports.addNewUser = (req, res, next) => {
+  try {
+    const user = userService.addNewUser(req.body)
+
+    if(user) {
+      res.status(201)
+      res.json(user)
+    } else {
+      res.status(503)
+      res.json ({
+        message: "Failed creating a new user"
+      })
+    }
+  } catch {
+    next(err);
+  }
+};

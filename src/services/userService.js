@@ -25,3 +25,11 @@ exports.getAllUsers = () => users;
 
 // get user by ID
 exports.getUserByID = (id) => users.find(u => u.id === id)
+
+// add a new user
+exports.addNewUser = (user) => {
+    user.id = users.length + 1;
+    users.push(user);
+    return user;
+}
+
