@@ -22,3 +22,6 @@ const users = [
 ]
 
 exports.getAllUsers = () => users;
+
+// get user by ID
+exports.getUserByID = (id) => users.find(u => u.id === id)
