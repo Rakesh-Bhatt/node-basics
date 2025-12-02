@@ -43,3 +43,26 @@ exports.addNewUser = (req, res, next) => {
     next(err);
   }
 };
+
+exports.updateUser = (rea, res, next) => {
+  try {
+    const updatedUser = userService.updateUser(req.params.id, req.body)
+
+    if (updatedUser) {
+      res.status(200)
+      res.json({
+        message: "User Updated Successfully",
+        body: updatedUser
+      })
+
+    } else {
+      res.status(404)
+      res.json({
+        message: "User with given id could not be Found!!"
+      })
+    }
+
+  } catch {
+    next(err)
+  }
+}

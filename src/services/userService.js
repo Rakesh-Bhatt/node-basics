@@ -33,3 +33,11 @@ exports.addNewUser = (user) => {
     return user;
 }
 
+// update existing user
+exports.updateUser = (id, userData) => {
+    const userId = users.findIndex(u=> u.id === userId);
+    if (userId === -1) return null;
+    users[userId] = { ...users[userId], ...userData};
+    return users[userId];
+}
+
