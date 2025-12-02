@@ -24,7 +24,7 @@ const users = [
 exports.getAllUsers = () => users;
 
 // get user by ID
-exports.getUserByID = (id) => users.find(u => u.id === id)
+exports.getUserByID = (id) => users.find(u => u.id === parseInt(id))
 
 // add a new user
 exports.addNewUser = (user) => {
@@ -35,7 +35,8 @@ exports.addNewUser = (user) => {
 
 // update existing user
 exports.updateUser = (id, userData) => {
-    const userId = users.findIndex(u=> u.id === userId);
+    const uid = parseInt(id);
+    const userId = users.findIndex(u=> u.id === uid);
     if (userId === -1) return null;
     users[userId] = { ...users[userId], ...userData};
     return users[userId];
@@ -43,7 +44,8 @@ exports.updateUser = (id, userData) => {
 
 // delete existing user
 exports.deleteUser = (id) => {
-    const userId = users.findIndex(u=> u.id === userId);
+    const uid = parseInt(id);
+    const userId = users.findIndex(u=> u.id === uid);
     if (userId === -1) return false;
 
     users.splice(userId, 1)
