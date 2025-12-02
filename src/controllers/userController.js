@@ -39,7 +39,7 @@ exports.addNewUser = (req, res, next) => {
         message: "Failed creating a new user"
       })
     }
-  } catch {
+  } catch(err) {
     next(err);
   }
 };
@@ -62,7 +62,7 @@ exports.updateUser = (req, res, next) => {
       })
     }
 
-  } catch {
+  } catch(err) {
     next(err)
   }
 }
@@ -81,7 +81,7 @@ exports.deleteUser = (req, res, next) => {
         message: "User with given id not found"
       })
     }
-  } catch {
+  } catch(err) {
     next(err)
   }
 }
