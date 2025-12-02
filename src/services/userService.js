@@ -41,3 +41,11 @@ exports.updateUser = (id, userData) => {
     return users[userId];
 }
 
+// delete existing user
+exports.deleteUser = (id) => {
+    const userId = users.findIndex(u=> u.id === userId);
+    if (userId === -1) return false;
+
+    users.splice(userId, 1)
+    return true;
+}

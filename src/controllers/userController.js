@@ -44,7 +44,7 @@ exports.addNewUser = (req, res, next) => {
   }
 };
 
-exports.updateUser = (rea, res, next) => {
+exports.updateUser = (req, res, next) => {
   try {
     const updatedUser = userService.updateUser(req.params.id, req.body)
 
@@ -62,6 +62,25 @@ exports.updateUser = (rea, res, next) => {
       })
     }
 
+  } catch {
+    next(err)
+  }
+}
+
+exports.deleteUser = (req, res, next) => {
+  try {
+    const userId = userService.deleteUser(req.params.id)
+    if (userId) {
+      res.status(200)
+      res.json({
+        message: "User Deleted Successfully"
+      })
+    } else {
+      res.status(404)
+      res.json({
+        message: "User with given id not found"
+      })
+    }
   } catch {
     next(err)
   }
