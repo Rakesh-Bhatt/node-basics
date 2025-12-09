@@ -6,6 +6,7 @@ const app = express();
 
 // Parse JSON body
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 // use logger middleware
 app.use(logger);
