@@ -27,11 +27,24 @@ exports.getAllUsers = () => users;
 exports.getUserByID = (id) => users.find(u => u.id === parseInt(id))
 
 // add a new user
-exports.addNewUser = (user) => {
-    user.id = users.length + 1;
-    users.push(user);
-    return user;
-}
+exports.addNewUser = (user = {}) => {
+    if (!user.name || !user.country) {
+        console.log("Invalid user:", user);
+        return null;
+    }
+
+    const newId = users.length + 1;
+
+    const newUser = {
+        id: newId,
+        name: user.name,
+        country: user.country
+    };
+
+    users.push(newUser);
+    return newUser;
+};
+
 
 // update existing user
 exports.updateUser = (id, userData) => {
