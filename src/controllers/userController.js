@@ -2,7 +2,12 @@ const userService = require('../services/userService');
 
 exports.getUsers = (req, res, next) => {
   try {
-    const users = userService.getAllUsers();
+    let users = userService.getAllUsers();
+
+  if (req.query.country) {
+    users = users.filter(u => u.country.toLowerCase() === req.query.country.toLowerCase());
+  }
+
     res.json(users);
   } catch (err) {
     next(err);
