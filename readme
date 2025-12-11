@@ -1,0 +1,12 @@
+# This Project is for Learning Node.js Basics
+## It includes the following features:
+
+### - Uses nodemon to manage the live changes without restarting the server manually
+### - RESTful API Endpoints using Express.js
+### - Complete CRUD operations for a "users" resource
+### - Use of Express Router for modular route handling
+### - Use of Middleware for logging and error handling
+### - Use of validation for incoming request data on API using Joi library
+### - User Authentication (Signup and Login) using JWT and bcryptjs
+### - In-memory User Data Storage for File Uploads
+### - File Upload Handling using multer
