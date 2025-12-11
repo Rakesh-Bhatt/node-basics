@@ -64,3 +64,8 @@ exports.deleteUser = (id) => {
     users.splice(userId, 1)
     return true;
 }
+
+// check if the user exists with email
+exports.findUserByEmail = (email) => {
+    return users.find(u => u.email === email);
+}
