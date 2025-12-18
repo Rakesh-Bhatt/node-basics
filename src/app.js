@@ -3,6 +3,7 @@ const userRoutes = require("./routes/userRoutes")
 const errorHandler = require("./middleware/errorHandler");
 const logger = require("./middleware/logger")
 const app = express();
+const sequelize = require("../src/config/database")
 
 // Parse JSON body
 app.use(express.json());
@@ -28,11 +29,21 @@ app.get('/test', (req, res) => {
 
 // Listen on PORT
 const PORT = 3003;
-// app.listen(PORT, () => {
-//   console.log(`Server running on port ${PORT}`);
-// });
+sequelize.authenticate()
+  .then(() => console.log('DB connection OK'))
+  .catch(err => console.error('DB connection failed:', err));
 
-app.listen(PORT, (err) => {
-  if (err) console.error("Failed to start server:", err);
-  else console.log(`Server running on port ${PORT}`);
-});
+
+sequelize.sync({ alter: true })
+  .then(() => {
+    console.log('Database synced');
+
+    // START SERVER ONLY AFTER DB IS READY
+    app.listen(PORT, (err) => {
+      if (err) console.error("Failed to start server:", err);
+      else console.log(`Server running on port ${PORT}`);
+    });
+  })
+  .catch((err) => {
+    console.error('Failed to sync DB:', err);
+  });
