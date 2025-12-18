@@ -10,6 +10,7 @@ const {
 
 const { validateUser } = require('../middleware/validateUser');
 const upload = require("../middleware/upload")
+const authController = require("../controllers/authController")
 
 router.get("/users", getUsers);
 router.get("/users/:id", getUserByID);
@@ -20,5 +21,9 @@ router.delete("/users/:id", deleteUser)
 router.post("/upload", upload.single("avatar"), (req, res) => {
   res.json({ message: "File uploaded successfully", file: req.file });
 })
+
+// routes for signup and login
+router.post("/users/signup", authController.signup)
+router.post("/users/login", authController.login)
 
 module.exports = router;

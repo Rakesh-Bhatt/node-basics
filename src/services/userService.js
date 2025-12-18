@@ -2,22 +2,30 @@ const users = [
     {
         id: 1,
         name: "Rakesh",
-        country: "Nepal"
+        country: "Nepal",
+        email: "rakesh@gmail.com",
+        password: "rakesh123"
     },
         {
         id: 2,
         name: "Ram",
-        country: "Nepal"
+        country: "Nepal",
+        email: "ram@gmail.com",
+        password: "ram123"
     },
         {
         id: 3,
         name: "Shyam",
-        country: "Nepal"
+        country: "Nepal",
+        email: "shyam@gmail.com",
+        password: "shyam123"
     },
         {
         id: 4,
         name: "Hari",
-        country: "India"
+        country: "India",
+        email: "hari@gmail.com",
+        password: "hari123"
     }
 ]
 
@@ -38,7 +46,9 @@ exports.addNewUser = (user = {}) => {
     const newUser = {
         id: newId,
         name: user.name,
-        country: user.country
+        country: user.country,
+        email: user.email,
+        password: user.password,
     };
 
     users.push(newUser);
@@ -63,4 +73,9 @@ exports.deleteUser = (id) => {
 
     users.splice(userId, 1)
     return true;
+}
+
+// check if the user exists with email
+exports.findUserByEmail = (email) => {
+    return users.find(u => u.email === email);
 }
